@@ -1,0 +1,93 @@
+:root {
+  font-family:
+    Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: #17202a;
+  background: #f5f7fa;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-width: 320px;
+  min-height: 100%;
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  margin: 0;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+.app-shell {
+  min-height: 100vh;
+  padding-bottom: 72px;
+}
+
+.app-content {
+  width: min(100%, 720px);
+  margin: 0 auto;
+  padding: 32px 20px;
+}
+
+.page-placeholder h1 {
+  margin: 0 0 8px;
+  font-size: 2rem;
+}
+
+.page-placeholder p {
+  margin: 0;
+  color: #667085;
+}
+
+.bottom-navigation {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  min-height: 64px;
+  border-top: 1px solid #dfe3e8;
+  background: #ffffff;
+}
+
+.bottom-navigation__link {
+  display: grid;
+  place-items: center;
+  padding: 12px 4px;
+  color: #667085;
+  font-size: 0.875rem;
+  text-decoration: none;
+}
+
+.bottom-navigation__link:hover,
+.bottom-navigation__link--active {
+  color: #155eef;
+}
+
+.bottom-navigation__link:focus-visible {
+  outline: 2px solid #155eef;
+  outline-offset: -4px;
+}
+
+@media (min-width: 720px) {
+  .bottom-navigation {
+    right: 50%;
+    left: auto;
+    width: 720px;
+    transform: translateX(50%);
+    border-right: 1px solid #dfe3e8;
+    border-left: 1px solid #dfe3e8;
+  }
+}
