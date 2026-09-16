@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Трекер здоровья</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app">
+    <section class="screen active" id="screen-today">
+
+      <div class="content-card">
+
+        <header class="header">
+          <h1>Сегодня</h1>
+          <p class="date">3 Сентября</p>
+        </header>
+
+        <div class="water-section">
+          <div class="card-header">
+            <span class="card-title">Вода</span>
+            <span class="card-percent">0%</span>
+          </div>
+
+          <div class="water-circle-wrap">
+            <svg class="water-circle" viewBox="0 0 200 200">
+              <circle class="water-circle-bg" cx="100" cy="100" r="93" />
+            </svg>
+            <div class="water-circle-text">
+              <span class="water-amount">0</span>
+              <span class="water-total">из 2500 мл</span>
+              <span class="water-left">осталось 2500 мл</span>
+            </div>
+          </div>
+
+          <div class="water-buttons">
+            <button class="btn btn-primary">+ 250 мл</button>
+            <button class="btn btn-primary">+ 500 мл</button>
+          </div>
+
+          <div class="water-actions">
+            <button class="btn btn-outline">Другое</button>
+            <button class="btn btn-text">↺ Отменить</button>
+          </div>
+        </div>
+
+        <div class="pills-section">
+          <div class="card-header">
+            <span class="card-title">Таблетки на сегодня</span>
+            <span class="card-count">0 / 3</span>
+          </div>
+
+          <ul class="pills-list">
+            <li class="pill-item">
+              <div class="pill-info">
+                <span class="pill-time">09:00</span>
+                <div class="pill-text">
+                  <span class="pill-name">Витамин D</span>
+                  <span class="pill-dose">1 таблетка</span>
+                </div>
+              </div>
+              <div class="pill-actions">
+                <button class="btn btn-ghost">
+                  <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="9" stroke-linecap="round"/>
+                    <path d="M12 7v5l3 3" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                  Отложить
+                </button>
+                <button class="btn btn-primary btn-small">
+                  <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <path d="M4 12l5 5L20 6" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                  Принял
+                </button>
+              </div>
+            </li>
+
+            <li class="pill-item">
+              <div class="pill-info">
+                <span class="pill-time">14:00</span>
+                <div class="pill-text">
+                  <span class="pill-name">Магний</span>
+                  <span class="pill-dose">1 таблетка</span>
+                </div>
+              </div>
+              <div class="pill-actions">
+                <button class="btn btn-ghost">
+                  <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="9" stroke-linecap="round"/>
+                    <path d="M12 7v5l3 3" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                  Отложить
+                </button>
+                <button class="btn btn-primary btn-small">
+                  <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <path d="M4 12l5 5L20 6" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                  Принял
+                </button>
+              </div>
+            </li>
+
+            <li class="pill-item">
+              <div class="pill-info">
+                <span class="pill-time">21:00</span>
+                <div class="pill-text">
+                  <span class="pill-name">Магний</span>
+                  <span class="pill-dose">1 таблетка</span>
+                </div>
+              </div>
+              <div class="pill-actions">
+                <button class="btn btn-ghost">
+                  <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="9" stroke-linecap="round"/>
+                    <path d="M12 7v5l3 3" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                  Отложить
+                </button>
+                <button class="btn btn-primary btn-small">
+                  <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <path d="M4 12l5 5L20 6" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                  Принял
+                </button>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- ЭКРАН 2: ТАБЛЕТКИ -->
+    <section class="screen" id="screen-pills">
+
+      <header class="header">
+        <h1>Мои препараты</h1>
+        <p class="date">2 активных</p>
+      </header>
+
+      <ul class="med-list">
+        <li class="med-item">
+          <div class="med-info">
+            <span class="med-name">Витамин D</span>
+            <span class="med-detail">1 таблетка · 09:00</span>
+          </div>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M6 9l6 6 6-6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </li>
+        <li class="med-item">
+          <div class="med-info">
+            <span class="med-name">Магний</span>
+            <span class="med-detail">1 таблетка · 14:00, 21:00</span>
+          </div>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M6 9l6 6 6-6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </li>
+      </ul>
+
+      <button class="btn btn-primary btn-full">
+        <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path d="M12 5v14M5 12h14" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Добавить препарат
+      </button>
+
+    </section>
+
+    <!-- ЭКРАН 3: ВОДА -->
+    <section class="screen" id="screen-water">
+
+      <header class="header">
+        <h1>Вода</h1>
+        <p class="date">Цель 2500 мл в день</p>
+      </header>
+
+      <section class="card">
+        <div class="card-header">
+          <span class="water-linear-amount">0 мл</span>
+          <span class="card-percent">осталось 2500 мл</span>
+        </div>
+
+        <div class="linear-progress">
+          <div class="linear-progress-fill" style="width: 0%"></div>
+        </div>
+
+        <div class="water-buttons">
+          <button class="btn btn-primary">+ 250 мл</button>
+          <button class="btn btn-primary">+ 500 мл</button>
+        </div>
+
+        <button class="btn btn-outline btn-full">Добавить вручную</button>
+      </section>
+
+      <section class="history-section">
+        <h2 class="section-title">История за сегодня</h2>
+        <p class="empty-state">Пока нет записей</p>
+      </section>
+
+    </section>
+
+    <!-- ЭКРАН 4: НАСТРОЙКИ -->
+    <section class="screen" id="screen-settings">
+
+      <header class="header">
+        <h1>Настройки</h1>
+        <p class="date">Вода, уведомления и интерфейс</p>
+      </header>
+
+      <section class="card">
+        <h2 class="section-title">Вода</h2>
+        <div class="input-row">
+          <div class="input-group">
+            <label>Дневная цель</label>
+            <div class="input-with-suffix">
+              <input type="number" value="2500" />
+              <span>мл</span>
+            </div>
+          </div>
+          <div class="input-group">
+            <label>Стандартная порция</label>
+            <div class="input-with-suffix">
+              <input type="number" value="250" />
+              <span>мл</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2 class="section-title">Уведомления</h2>
+
+        <div class="toggle-row">
+          <span>Напоминания о воде</span>
+          <button class="toggle active" id="water-toggle">
+            <span class="toggle-knob"></span>
+          </button>
+        </div>
+        <p class="hint-text">Периодические напоминания попить воды</p>
+
+        <div class="input-row">
+          <div class="input-group">
+            <label>С</label>
+            <input type="time" class="input-plain" />
+          </div>
+          <div class="input-group">
+            <label>До</label>
+            <input type="time" class="input-plain" />
+          </div>
+        </div>
+
+        <div class="input-group full-width">
+          <label>Частота</label>
+          <select class="input-plain">
+            <option>Каждый час</option>
+            <option>Каждые 2 часа</option>
+            <option>Каждые 3 часа</option>
+          </select>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2 class="section-title">Интерфейс</h2>
+        <label class="radio-row">
+          <input type="radio" name="theme" checked />
+          <span>Системная</span>
+        </label>
+        <label class="radio-row">
+          <input type="radio" name="theme" />
+          <span>Светлая</span>
+        </label>
+        <label class="radio-row">
+          <input type="radio" name="theme" />
+          <span>Тёмная</span>
+        </label>
+      </section>
+
+    </section>
+
+    <!-- Нижняя навигация -->
+    <nav class="bottom-nav">
+      <button class="nav-item active" data-target="screen-today">
+        <svg class="nav-icon" width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M13.75 19.25V11.9167C13.75 11.6736 13.6534 11.4404 13.4815 11.2685C13.3096 11.0966 13.0764 11 12.8333 11H9.16667C8.92355 11 8.69039 11.0966 8.51849 11.2685C8.34658 11.4404 8.25 11.6736 8.25 11.9167V19.25" stroke="currentColor" stroke-width="2.01667" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M2.75 9.16666C2.74994 8.89997 2.80806 8.63648 2.92031 8.39457C3.03255 8.15265 3.19623 7.93814 3.39992 7.76599L9.81658 2.26599C10.1475 1.98632 10.5667 1.83289 11 1.83289C11.4333 1.83289 11.8525 1.98632 12.1834 2.26599L18.6001 7.76599C18.8038 7.93814 18.9674 8.15265 19.0797 8.39457C19.1919 8.63648 19.2501 8.89997 19.25 9.16666V17.4167C19.25 17.9029 19.0568 18.3692 18.713 18.713C18.3692 19.0568 17.9029 19.25 17.4167 19.25H4.58333C4.0971 19.25 3.63079 19.0568 3.28697 18.713C2.94315 18.3692 2.75 17.9029 2.75 17.4167V9.16666Z" stroke="currentColor" stroke-width="2.01667" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span>Сегодня</span>
+      </button>
+      <button class="nav-item" data-target="screen-pills">
+        <svg class="nav-icon" width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M9.62501 18.7917L18.7917 9.62501C19.22 9.20525 19.5609 8.70473 19.7946 8.15241C20.0283 7.60008 20.1502 7.00691 20.1532 6.40719C20.1562 5.80747 20.0403 5.21309 19.8122 4.65844C19.5841 4.10378 19.2483 3.59985 18.8243 3.17577C18.4002 2.7517 17.8962 2.4159 17.3416 2.1878C16.7869 1.95969 16.1926 1.8438 15.5928 1.84683C14.9931 1.84986 14.3999 1.97175 13.8476 2.20544C13.2953 2.43914 12.7948 2.78001 12.375 3.20835L3.20835 12.375C2.78001 12.7948 2.43914 13.2953 2.20544 13.8476C1.97175 14.3999 1.84986 14.9931 1.84683 15.5928C1.8438 16.1926 1.95969 16.7869 2.1878 17.3416C2.4159 17.8962 2.7517 18.4002 3.17577 18.8243C3.59985 19.2483 4.10378 19.5841 4.65844 19.8122C5.21309 20.0403 5.80747 20.1562 6.40719 20.1532C7.00691 20.1502 7.60008 20.0283 8.15241 19.7946C8.70473 19.5609 9.20525 19.22 9.62501 18.7917Z" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M7.79166 7.79166L14.2083 14.2083" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span>Таблетки</span>
+      </button>
+      <button class="nav-item" data-target="screen-water">
+        <svg class="nav-icon" width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M11 20.1667C12.7018 20.1667 14.3339 19.4906 15.5372 18.2873C16.7406 17.0839 17.4166 15.4518 17.4166 13.75C17.4166 11.9167 16.5 10.175 14.6666 8.70833C12.8333 7.24167 11.4583 5.04167 11 2.75C10.5416 5.04167 9.16665 7.24167 7.33331 8.70833C5.49998 10.175 4.58331 11.9167 4.58331 13.75C4.58331 15.4518 5.25935 17.0839 6.46271 18.2873C7.66607 19.4906 9.29817 20.1667 11 20.1667Z" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span>Вода</span>
+      </button>
+      <button class="nav-item" data-target="screen-settings">
+        <svg class="nav-icon" width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M8.86506 3.79133C8.91556 3.25997 9.16236 2.76654 9.55723 2.40742C9.95211 2.0483 10.4667 1.8493 11.0004 1.8493C11.5342 1.8493 12.0488 2.0483 12.4436 2.40742C12.8385 2.76654 13.0853 3.25997 13.1358 3.79133C13.1662 4.13458 13.2788 4.46546 13.4641 4.75597C13.6494 5.04649 13.902 5.28807 14.2005 5.46028C14.499 5.6325 14.8345 5.73026 15.1788 5.74531C15.523 5.76037 15.8659 5.69225 16.1782 5.54675C16.6632 5.32654 17.2128 5.29468 17.7201 5.45736C18.2273 5.62004 18.6558 5.96562 18.9223 6.42684C19.1887 6.88807 19.2741 7.43194 19.1616 7.9526C19.0492 8.47327 18.7471 8.93348 18.3141 9.24366C18.0321 9.44152 17.8019 9.70439 17.643 10.01C17.4841 10.3157 17.4011 10.6551 17.4011 10.9995C17.4011 11.344 17.4841 11.6834 17.643 11.9891C17.8019 12.2947 18.0321 12.5576 18.3141 12.7554C18.7471 13.0656 19.0492 13.5258 19.1616 14.0465C19.2741 14.5671 19.1887 15.111 18.9223 15.5722C18.6558 16.0335 18.2273 16.379 17.7201 16.5417C17.2128 16.7044 16.6632 16.6725 16.1782 16.4523C15.8659 16.3068 15.523 16.2387 15.1788 16.2538C14.8345 16.2688 14.499 16.3666 14.2005 16.5388C13.902 16.711 13.6494 16.9526 13.4641 17.2431C13.2788 17.5336 13.1662 17.8645 13.1358 18.2077C13.0853 18.7391 12.8385 19.2325 12.4436 19.5917C12.0488 19.9508 11.5342 20.1498 11.0004 20.1498C10.4667 20.1498 9.95211 19.9508 9.55723 19.5917C9.16236 19.2325 8.91556 18.7391 8.86506 18.2077C8.83476 17.8644 8.72215 17.5334 8.53677 17.2427C8.35139 16.9521 8.0987 16.7105 7.8001 16.5382C7.50151 16.366 7.1658 16.2683 6.82142 16.2533C6.47704 16.2384 6.13413 16.3066 5.82172 16.4523C5.33671 16.6725 4.78711 16.7044 4.27989 16.5417C3.77268 16.379 3.34413 16.0335 3.07767 15.5722C2.8112 15.111 2.72588 14.5671 2.8383 14.0465C2.95073 13.5258 3.25286 13.0656 3.68589 12.7554C3.96788 12.5576 4.19806 12.2947 4.35697 11.9891C4.51588 11.6834 4.59885 11.344 4.59885 10.9995C4.59885 10.6551 4.51588 10.3157 4.35697 10.01C4.19806 9.70439 3.96788 9.44152 3.68589 9.24366C3.25347 8.93332 2.95187 8.47329 2.83972 7.95298C2.72756 7.43267 2.81287 6.88924 3.07904 6.42832C3.34522 5.96739 3.77326 5.62189 4.27997 5.45897C4.78669 5.29604 5.33588 5.32733 5.82081 5.54675C6.13317 5.69225 6.47599 5.76037 6.82025 5.74531C7.16451 5.73026 7.50008 5.6325 7.79855 5.46028C8.09702 5.28807 8.34961 5.04649 8.53493 4.75597C8.72026 4.46546 8.83287 4.13458 8.86322 3.79133" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M11 13.75C12.5188 13.75 13.75 12.5188 13.75 11C13.75 9.48122 12.5188 8.25 11 8.25C9.48122 8.25 8.25 9.48122 8.25 11C8.25 12.5188 9.48122 13.75 11 13.75Z" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span>Настройки</span>
+      </button>
+    </nav>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
