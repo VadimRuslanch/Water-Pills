@@ -1,4 +1,10 @@
+import { useWaterStore } from '../../../entities/water/model'
+
 export function TodayPage() {
+  const amount = useWaterStore((state) => state.amount)
+  const goal = useWaterStore((state) => state.goal)
+  const addWater = useWaterStore((state) => state.addWater)
+
   return (
     <div className="today-card">
       <header className="today-header">
@@ -17,14 +23,19 @@ export function TodayPage() {
             <circle className="today-circle-bg" cx="100" cy="100" r="93" />
           </svg>
           <div className="today-circle-text">
-            <span className="today-amount">0</span>
-            <span className="today-total">из 2500 мл</span>
+            <span className="today-amount">{amount}</span>
+            <span className="today-total">из {goal} мл</span>
             <span className="today-left">осталось 2500 мл</span>
           </div>
         </div>
 
         <div className="today-water-buttons">
-          <button className="today-btn today-btn-primary">+ 250 мл</button>
+          <button
+            className="today-btn today-btn-primary"
+            onClick={() => addWater(250)}
+          >
+            + 250 мл
+          </button>
           <button className="today-btn today-btn-primary">+ 500 мл</button>
         </div>
 
