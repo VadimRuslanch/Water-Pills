@@ -36,7 +36,12 @@ export function TodayPage() {
           >
             + 250 мл
           </button>
-          <button className="today-btn today-btn-primary">+ 500 мл</button>
+          <button
+            className="today-btn today-btn-primary"
+            onClick={() => addWater(500)}
+          >
+            + 500 мл
+          </button>
         </div>
 
         <div className="today-water-actions">
