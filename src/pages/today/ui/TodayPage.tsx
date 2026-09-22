@@ -1,9 +1,13 @@
-import { useWaterStore } from '../../../entities/water/model'
+import { useState } from "react";
+import { useWaterStore } from "../../../entities/water/model";
+
 
 export function TodayPage() {
-  const amount = useWaterStore((state) => state.amount)
-  const goal = useWaterStore((state) => state.goal)
-  const addWater = useWaterStore((state) => state.addWater)
+  const amount = useWaterStore((state) => state.amount);
+  const goal = useWaterStore((state) => state.goal);
+  const addWater = useWaterStore((state) => state.addWater);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [customAmount, setCustomAmount] = useState("");
 
   return (
     <div className="today-card">
@@ -45,7 +49,12 @@ export function TodayPage() {
         </div>
 
         <div className="today-water-actions">
-          <button className="today-btn today-btn-outline">Другое</button>
+          <button
+            className="today-btn today-btn-outline"
+            onClick={() => setIsModalOpen(true)}
+          >
+            Другое
+          </button>
           <button className="today-btn today-btn-text">Отменить</button>
         </div>
       </div>
@@ -191,6 +200,30 @@ export function TodayPage() {
             </div>
           </li>
         </ul>
+        {isModalOpen && (
+          <div className="today-modal-overlay">
+            <div className="today-modal">
+              <h2>Количество</h2>
+              <input
+                type="number"
+                value={customAmount}
+                onChange={(e) => setCustomAmount(e.target.value)}
+                placeholder="350"
+              />
+              <span>мл</span>
+              <button
+                className="today-btn today-btn-primary"
+                onClick={() => {
+                  addWater(Number(customAmount));
+                  setCustomAmount("");
+                  setIsModalOpen(false);
+                }}
+              >
+                Добавить
+              </button>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

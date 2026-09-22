@@ -331,3 +331,42 @@ select {
   height: 14px;
   flex-shrink: 0;
 }
+.today-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+.today-modal {
+  background-color: #161621;
+  border-radius: 16px;
+  padding: 24px;
+  width: min(90%, 320px);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.today-modal h2 {
+  margin: 0;
+  font-size: 18px;
+  color: #ffffff;
+}
+
+.today-modal input {
+  background-color: #22222c;
+  border: 1px solid #3a3a45;
+  border-radius: 12px;
+  padding: 12px 14px;
+  color: #ffffff;
+  font-size: 16px;
+  font-family: inherit;
+  outline: none;
+}
