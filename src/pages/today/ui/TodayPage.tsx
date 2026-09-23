@@ -1,13 +1,16 @@
 import { useState } from "react";
 import { useWaterStore } from "../../../entities/water/model";
+import { format } from "date-fns";
 
 
 export function TodayPage() {
-  const amount = useWaterStore((state) => state.amount);
-  const goal = useWaterStore((state) => state.goal);
-  const addWater = useWaterStore((state) => state.addWater);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [customAmount, setCustomAmount] = useState("");
+ const entries = useWaterStore((state) => state.entries);
+ const amount = entries.reduce((total, entry) => total + entry.amount, 0);
+ const goal = useWaterStore((state) => state.goal);
+ const addWater = useWaterStore((state) => state.addWater);
+ const removeWaterEntry = useWaterStore((state) => state.removeWaterEntry);
+ const [isModalOpen, setIsModalOpen] = useState(false);
+ const [customAmount, setCustomAmount] = useState("");
 
   return (
     <div className="today-card">
@@ -57,6 +60,25 @@ export function TodayPage() {
           </button>
           <button className="today-btn today-btn-text">Отменить</button>
         </div>
+      </div>
+      <div className="today-history">
+        <p className="today-history-title">История за сегодня</p>
+        <ul className="today-history-list">
+          {entries.map((entry) => (
+            <li key={entry.id} className="today-history-item">
+              <span className="today-history-time">
+                {format(new Date(entry.createdAt), "HH:mm")}
+              </span>
+              <span>{entry.amount} мл</span>
+              <button
+                className="today-history-remove"
+                onClick={() => removeWaterEntry(entry.id)}
+              >
+                удалить
+              </button>
+            </li>
+          ))}
+        </ul>
       </div>
 
       <div>
