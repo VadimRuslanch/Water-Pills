@@ -11,6 +11,7 @@ type WaterStore = {
   entries: WaterEntry[];
   addWater: (amount: number) => void;
   removeWaterEntry: (id: string) => void;
+  setGoal: (goal: number) => void;
 };
 
 export const useWaterStore = create<WaterStore>((set) => ({
@@ -31,4 +32,5 @@ export const useWaterStore = create<WaterStore>((set) => ({
     set((state) => ({
       entries: state.entries.filter((entry) => entry.id !== id),
     })),
+  setGoal: (goal) => set({ goal }),
 }));
