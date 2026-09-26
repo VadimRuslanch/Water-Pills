@@ -1,0 +1,517 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #161621;
+    color: #ffffff;
+    font-family: 'Instrument Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.app {
+    max-width: 448px;
+    margin: 0 auto;
+    padding: 24px 24px 100px;
+}
+
+.screen {
+    display: none;
+}
+
+.screen.active {
+    display: block;
+}
+
+/* Шапка */
+.header {
+    margin-bottom: 16px;
+}
+
+.header h1 {
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 33.6px;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.header .date {
+    color: #8b8b96;
+    font-size: 14px;
+    margin-top: 4px;
+}
+
+.water-section {
+    margin-bottom: 16px;
+}
+
+/* Единая большая карточка экрана "Сегодня" */
+.content-card {
+    background-color: #161621;
+    border-radius: 16px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+/* Обычные карточки (экраны Вода, Настройки) */
+.card {
+    background-color: #161621;
+    border-radius: 16px;
+    padding: 16px;
+    margin-top: 20px;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.card-title {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.card-percent,
+.card-count {
+    color: #8b8b96;
+    font-size: 14px;
+}
+
+/* Круг воды */
+.water-circle-wrap {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    margin: 10px auto 24px;
+}
+
+.water-circle {
+    width: 100%;
+    height: 100%;
+}
+
+.water-circle-bg {
+    fill: none;
+    stroke: #5250F3;
+    stroke-width: 14;
+}
+
+.water-circle-text {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.water-amount {
+    font-size: 36px;
+    font-weight: 700;
+}
+
+.water-total {
+    color: #8b8b96;
+    font-size: 13px;
+    margin-top: 4px;
+}
+
+.water-left {
+    color: #5250F3;
+    font-size: 13px;
+    margin-top: 2px;
+}
+
+/* Кнопки */
+.btn {
+    height: 40px;
+    padding: 0 16px;
+    border-radius: 9999px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: inherit;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border: 1px solid transparent;
+}
+
+.water-buttons {
+    display: flex;
+    gap: 12px;
+}
+
+.water-buttons .btn {
+    flex: 1;
+}
+
+.btn-primary {
+    background-color: #5250F3;
+    border-color: #5250F3;
+    color: #ffffff;
+}
+
+.water-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 16px;
+}
+
+.btn-outline {
+    flex: 1;
+    background-color: transparent;
+    border: 1px solid #5250F3;
+    color: #ffffff;
+}
+
+.btn-text {
+    flex: 1;
+    background-color: transparent;
+    border: 1px solid #5250F3;
+    color: #5250F3;
+}
+
+/* Таблетки */
+.pills-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.pill-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.03);
+    border-radius: 8px;
+    padding: 12px;
+    gap: 12px;
+    min-height: 70.4px;
+}
+
+.pill-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 0;
+}
+
+.pill-time {
+    color: #8b8b96;
+    font-size: 13px;
+    min-width: 38px;
+    flex-shrink: 0;
+}
+
+.pill-text {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.pill-name {
+    font-size: 14px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.pill-dose {
+    color: #8b8b96;
+    font-size: 12px;
+    margin-top: 2px;
+    white-space: nowrap;
+}
+
+.pill-actions {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-shrink: 0;
+}
+
+.btn-ghost {
+    height: auto;
+    background: transparent;
+    color: #5250F3;
+    padding: 6px 8px;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    white-space: nowrap;
+}
+
+.btn-small {
+    height: auto;
+    padding: 6px 10px;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    white-space: nowrap;
+}
+
+.btn-icon {
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
+}
+
+/* Нижняя навигация */
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 448px;
+    background-color: #161621;
+    display: flex;
+    justify-content: space-around;
+    padding: 6px 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.nav-item {
+    background: transparent;
+    border: none;
+    color: #8b8b96;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    font-size: 11px;
+    font-family: inherit;
+    cursor: pointer;
+}
+
+.nav-item.active {
+    color: #5250F3;
+}
+
+.nav-icon {
+    width: 22px;
+    height: 22px;
+}
+
+/* ===== ЭКРАН "ТАБЛЕТКИ" (список препаратов) ===== */
+.med-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.med-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #1a1a22;
+    border-radius: 16px;
+    padding: 16px 18px;
+}
+
+.med-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.med-name {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.med-detail {
+    color: #8b8b96;
+    font-size: 13px;
+}
+
+.chevron {
+    width: 20px;
+    height: 20px;
+    color: #8b8b96;
+    flex-shrink: 0;
+}
+
+.btn-full {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}
+
+/* ===== ЭКРАН "ВОДА" (линейный прогресс) ===== */
+.water-linear-amount {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.linear-progress {
+    width: 100%;
+    height: 8px;
+    background-color: #2a2a35;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.linear-progress-fill {
+    height: 100%;
+    background-color: #5250F3;
+    border-radius: 4px;
+    transition: width 0.3s ease;
+}
+
+.history-section {
+    margin-top: 20px;
+}
+
+.section-title {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 14px;
+}
+
+.empty-state {
+    color: #8b8b96;
+    font-size: 14px;
+    text-align: center;
+    padding: 24px 0;
+}
+
+/* ===== ЭКРАН "НАСТРОЙКИ" ===== */
+.input-row {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.input-group {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.input-group.full-width {
+    width: 100%;
+    margin-top: 4px;
+}
+
+.input-group label {
+    font-size: 13px;
+    color: #8b8b96;
+}
+
+.input-with-suffix {
+    display: flex;
+    align-items: center;
+    background-color: #22222c;
+    border-radius: 12px;
+    padding: 0 14px;
+}
+
+.input-with-suffix input {
+    background: transparent;
+    border: none;
+    color: #ffffff;
+    font-size: 15px;
+    padding: 12px 0;
+    width: 100%;
+    outline: none;
+}
+
+.input-with-suffix span {
+    color: #8b8b96;
+    font-size: 13px;
+}
+
+.input-plain {
+    background-color: #22222c;
+    border: none;
+    border-radius: 12px;
+    padding: 12px 14px;
+    color: #ffffff;
+    font-size: 14px;
+    font-family: inherit;
+    outline: none;
+    width: 100%;
+}
+
+.toggle-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.toggle-row span {
+    font-size: 15px;
+}
+
+.hint-text {
+    color: #8b8b96;
+    font-size: 13px;
+    margin-bottom: 16px;
+}
+
+.toggle {
+    width: 44px;
+    height: 26px;
+    border-radius: 13px;
+    background-color: #3a3a45;
+    border: none;
+    position: relative;
+    cursor: pointer;
+    padding: 0;
+    transition: background-color 0.2s ease;
+}
+
+.toggle.active {
+    background-color: #5250F3;
+}
+
+.toggle-knob {
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 20px;
+    height: 20px;
+    background-color: #ffffff;
+    border-radius: 50%;
+    transition: transform 0.2s ease;
+}
+
+.toggle.active .toggle-knob {
+    transform: translateX(18px);
+}
+
+.radio-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.radio-row input[type="radio"] {
+    width: 18px;
+    height: 18px;
+    accent-color: #5250F3;
+    cursor: pointer;
+}
