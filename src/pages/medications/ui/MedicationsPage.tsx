@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export function MedicationsPage() {
   return (
     <div className="med-page">
@@ -48,7 +50,7 @@ export function MedicationsPage() {
         </li>
       </ul>
 
-      <button className="med-btn-primary">
+      <Link to="/medications/create" className="med-btn-primary">
         <svg
           className="med-btn-icon"
           viewBox="0 0 24 24"
@@ -63,7 +65,7 @@ export function MedicationsPage() {
           />
         </svg>
         Добавить препарат
-      </button>
+      </Link>
     </div>
   );
 }

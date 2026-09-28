@@ -499,6 +499,8 @@ select {
    align-items: center;
    justify-content: center;
    gap: 6px;
+   text-decoration: none;
+   box-sizing: border-box;
  }
 
  .med-btn-icon {
@@ -665,3 +667,27 @@ select {
       accent-color: #5250f3;
       cursor: pointer;
     }
+        /* ===== Форма "Новый препарат" ===== */
+        .med-create-page {
+          display: flex;
+          flex-direction: column;
+          gap: 16px;
+        }
+    
+        .med-create-page .settings-card {
+          display: flex;
+          flex-direction: column;
+          gap: 16px;
+        }
+    
+        .med-create-page .settings-input-group input {
+          background-color: #22222c;
+          border: none;
+          border-radius: 12px;
+          padding: 12px 14px;
+          color: #ffffff;
+          font-size: 15px;
+          font-family: inherit;
+          outline: none;
+          color-scheme: dark;
+        }
