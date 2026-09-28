@@ -1,9 +1,19 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useMedicationStore } from "../../../entities/medication/model";
 
 export function MedicationCreatePage() {
   const [name, setName] = useState("");
   const [dosage, setDosage] = useState("");
   const [time, setTime] = useState("");
+
+  const addMedication = useMedicationStore((state) => state.addMedication);
+  const navigate = useNavigate();
+
+  const handleSave = () => {
+    addMedication({ name, dosage, time });
+    navigate("/medications");
+  };
 
   return (
     <div className="med-create-page">
@@ -40,7 +50,9 @@ export function MedicationCreatePage() {
           />
         </div>
 
-        <button className="med-btn-primary">Сохранить</button>
+        <button className="med-btn-primary" onClick={handleSave}>
+          Сохранить
+        </button>
       </div>
     </div>
   );
