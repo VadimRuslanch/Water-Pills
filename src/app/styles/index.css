@@ -690,4 +690,28 @@ select {
           font-family: inherit;
           outline: none;
           color-scheme: dark;
+        }
   
+          .days-row {
+              display: flex;
+              gap: 8px;
+              flex-wrap: wrap;
+            }
+          
+            .day-btn {
+              width: 40px;
+              height: 40px;
+              border-radius: 50%;
+              border: 1px solid var(--border, #2a2a38);
+              background: transparent;
+              color: #8b8b96;
+              font-size: 13px;
+              font-family: inherit;
+              cursor: pointer;
+            }
+          
+            .day-btn-active {
+              background-color: #5250F3;
+              border-color: #5250F3;
+              color: #ffffff;
+            }

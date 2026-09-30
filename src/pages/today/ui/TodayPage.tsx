@@ -14,10 +14,14 @@ export function TodayPage() {
   const addWater = useWaterStore((state) => state.addWater);
   const removeWaterEntry = useWaterStore((state) => state.removeWaterEntry);
   const medications = useMedicationStore((state) => state.medications);
+  const todayDayOfWeek = new Date().getDay();
+  const todayMedications = medications.filter((medication) =>
+    medication.daysOfWeek.includes(todayDayOfWeek),
+  );
   const intakes = useMedicationIntakeStore((state) => state.intakes);
   const addIntake = useMedicationIntakeStore((state) => state.addIntake);
-  const takenCount = medications.filter((medication) =>
-  intakes.some((intake) => intake.medicationId === medication.id),
+  const takenCount = todayMedications.filter((medication) =>
+    intakes.some((intake) => intake.medicationId === medication.id),
   ).length;
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [customAmount, setCustomAmount] = useState("");
@@ -95,14 +99,14 @@ export function TodayPage() {
         <div className="today-section-header">
           <span className="today-section-title">Таблетки на сегодня</span>
           <span className="today-count">
-            {takenCount} / {medications.length}
+            {takenCount} / {todayMedications.length}
           </span>
         </div>
-        {medications.length === 0 ? (
+        {todayMedications.length === 0 ? (
           <p className="today-empty">Сегодня ничего нет</p>
         ) : (
           <ul className="today-pills-list">
-            {medications.map((medication) => {
+            {todayMedications.map((medication) => {
               const isTaken = intakes.some(
                 (intake) => intake.medicationId === medication.id,
               );

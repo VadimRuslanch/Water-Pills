@@ -5,8 +5,8 @@ export type Medication = {
   name: string;
   dosage: string;
   time: string;
+  daysOfWeek: number[];
 };
-
 type MedicationStore = {
   medications: Medication[];
   addMedication: (data: Omit<Medication, "id">) => void;
