@@ -6,7 +6,18 @@ import { useMedicationStore } from "../../../entities/medication/model";
 export function MedicationCreatePage() {
   const [name, setName] = useState("");
   const [dosage, setDosage] = useState("");
-  const [time, setTime] = useState("");
+  const [times, setTimes] = useState<string[]>([]);
+  const [newTime, setNewTime] = useState("");
+  function addTime() {
+    if (newTime && !times.includes(newTime)) {
+      setTimes([...times, newTime]);
+      setNewTime("");
+    }
+  }
+
+  function removeTime(timeToRemove: string) {
+    setTimes(times.filter((t) => t !== timeToRemove));
+  }
   const [selectedDays, setSelectedDays] = useState<number[]>([]);
   function toggleDay(day: number) {
     if (selectedDays.includes(day)) {
@@ -20,7 +31,7 @@ export function MedicationCreatePage() {
   const navigate = useNavigate();
 
   const handleSave = () => {
-    addMedication({ name, dosage, time, daysOfWeek: selectedDays });
+    addMedication({ name, dosage, times, daysOfWeek: selectedDays });
     navigate("/medications");
   };
   return (
@@ -78,11 +89,29 @@ export function MedicationCreatePage() {
 
         <div className="settings-input-group">
           <label>Время приёма</label>
-          <input
-            type="time"
-            value={time}
-            onChange={(e) => setTime(e.target.value)}
-          />
+          <div className="times-row">
+            <input
+              type="time"
+              value={newTime}
+              onChange={(e) => setNewTime(e.target.value)}
+            />
+            <button type="button" className="time-add-btn" onClick={addTime}>
+              + Добавить время
+            </button>
+          </div>
+
+          {times.length > 0 && (
+            <div className="times-list">
+              {times.map((t) => (
+                <span key={t} className="time-chip">
+                  {t}
+                  <button type="button" onClick={() => removeTime(t)}>
+                    ✕
+                  </button>
+                </span>
+              ))}
+            </div>
+          )}
         </div>
 
         <button className="med-btn-primary" onClick={handleSave}>

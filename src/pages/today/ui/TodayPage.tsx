@@ -18,10 +18,16 @@ export function TodayPage() {
   const todayMedications = medications.filter((medication) =>
     medication.daysOfWeek.includes(todayDayOfWeek),
   );
+  const todayPairs = todayMedications.flatMap((medication) =>
+    medication.times.map((time) => ({ medication, time })),
+  );
   const intakes = useMedicationIntakeStore((state) => state.intakes);
   const addIntake = useMedicationIntakeStore((state) => state.addIntake);
-  const takenCount = todayMedications.filter((medication) =>
-    intakes.some((intake) => intake.medicationId === medication.id),
+  const takenCount = todayPairs.filter((pair) =>
+    intakes.some(
+      (intake) =>
+        intake.medicationId === pair.medication.id && intake.time === pair.time,
+    ),
   ).length;
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [customAmount, setCustomAmount] = useState("");
@@ -99,26 +105,33 @@ export function TodayPage() {
         <div className="today-section-header">
           <span className="today-section-title">Таблетки на сегодня</span>
           <span className="today-count">
-            {takenCount} / {todayMedications.length}
+            {takenCount} / {todayPairs.length}
           </span>
         </div>
-        {todayMedications.length === 0 ? (
+        {todayPairs.length === 0 ? (
           <p className="today-empty">Сегодня ничего нет</p>
         ) : (
           <ul className="today-pills-list">
-            {todayMedications.map((medication) => {
+            {todayPairs.map((pair) => {
               const isTaken = intakes.some(
-                (intake) => intake.medicationId === medication.id,
+                (intake) =>
+                  intake.medicationId === pair.medication.id &&
+                  intake.time === pair.time,
               );
 
               return (
-                <li key={medication.id} className="today-pill-item">
+                <li
+                  key={`${pair.medication.id}-${pair.time}`}
+                  className="today-pill-item"
+                >
                   <div className="today-pill-info">
-                    <span className="today-pill-time">{medication.time}</span>
+                    <span className="today-pill-time">{pair.time}</span>
                     <div className="today-pill-text">
-                      <span className="today-pill-name">{medication.name}</span>
+                      <span className="today-pill-name">
+                        {pair.medication.name}
+                      </span>
                       <span className="today-pill-dose">
-                        {medication.dosage}
+                        {pair.medication.dosage}
                       </span>
                     </div>
                   </div>
@@ -145,7 +158,7 @@ export function TodayPage() {
                     ) : (
                       <button
                         className="today-btn-small"
-                        onClick={() => addIntake(medication.id)}
+                        onClick={() => addIntake(pair.medication.id, pair.time)}
                       >
                         <svg
                           className="today-btn-icon"

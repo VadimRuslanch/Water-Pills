@@ -4,7 +4,7 @@ export type Medication = {
   id: string;
   name: string;
   dosage: string;
-  time: string;
+  times: string[];
   daysOfWeek: number[];
 };
 type MedicationStore = {

@@ -715,3 +715,51 @@ select {
               border-color: #5250F3;
               color: #ffffff;
             }
+
+                        .times-row {
+                          display: flex;
+                          gap: 8px;
+                        }
+            
+                        .times-row input {
+                          flex: 1;
+                        }
+            
+                        .time-add-btn {
+                          background: transparent;
+                          border: 1px solid #5250F3;
+                          color: #5250F3;
+                          border-radius: 12px;
+                          padding: 0 14px;
+                          font-size: 13px;
+                          font-family: inherit;
+                          cursor: pointer;
+                          white-space: nowrap;
+                        }
+            
+                        .times-list {
+                          display: flex;
+                          flex-wrap: wrap;
+                          gap: 8px;
+                          margin-top: 10px;
+                        }
+            
+                        .time-chip {
+                          display: flex;
+                          align-items: center;
+                          gap: 6px;
+                          background-color: #22222c;
+                          border-radius: 9999px;
+                          padding: 6px 10px;
+                          font-size: 13px;
+                          color: #ffffff;
+                        }
+            
+                        .time-chip button {
+                          background: transparent;
+                          border: none;
+                          color: #8b8b96;
+                          cursor: pointer;
+                          font-size: 12px;
+                          padding: 0;
+                        }

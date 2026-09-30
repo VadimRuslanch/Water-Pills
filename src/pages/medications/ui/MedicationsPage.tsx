@@ -21,7 +21,7 @@ export function MedicationsPage() {
             <div className="med-info">
               <span className="med-name">{medication.name}</span>
               <span className="med-detail">
-                {medication.dosage} · {medication.time}
+                {medication.dosage} · {medication.times.join(", ")}
               </span>
             </div>
             <svg
