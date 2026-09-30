@@ -2,19 +2,25 @@ import { useState } from "react";
 import { useWaterStore } from "../../../entities/water/model";
 import { format } from "date-fns";
 import { useMedicationStore } from "../../../entities/medication/model";
-
+import { useMedicationIntakeStore } from "../../../entities/medication-intake/model";
 
 export function TodayPage() {
- const entries = useWaterStore((state) => state.entries);
- const amount = entries.reduce((total, entry) => total + entry.amount, 0);
- const goal = useWaterStore((state) => state.goal);
- const remaining = Math.max(goal - amount, 0);
- const percent = goal > 0 ? Math.min(Math.round((amount / goal) * 100), 100) : 0;
- const addWater = useWaterStore((state) => state.addWater);
- const removeWaterEntry = useWaterStore((state) => state.removeWaterEntry);
- const medications = useMedicationStore((state) => state.medications);
- const [isModalOpen, setIsModalOpen] = useState(false);
- const [customAmount, setCustomAmount] = useState("");
+  const entries = useWaterStore((state) => state.entries);
+  const amount = entries.reduce((total, entry) => total + entry.amount, 0);
+  const goal = useWaterStore((state) => state.goal);
+  const remaining = Math.max(goal - amount, 0);
+  const percent =
+    goal > 0 ? Math.min(Math.round((amount / goal) * 100), 100) : 0;
+  const addWater = useWaterStore((state) => state.addWater);
+  const removeWaterEntry = useWaterStore((state) => state.removeWaterEntry);
+  const medications = useMedicationStore((state) => state.medications);
+  const intakes = useMedicationIntakeStore((state) => state.intakes);
+  const addIntake = useMedicationIntakeStore((state) => state.addIntake);
+  const takenCount = medications.filter((medication) =>
+  intakes.some((intake) => intake.medicationId === medication.id),
+  ).length;
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [customAmount, setCustomAmount] = useState("");
 
   return (
     <div className="today-card">
@@ -88,60 +94,78 @@ export function TodayPage() {
       <div>
         <div className="today-section-header">
           <span className="today-section-title">Таблетки на сегодня</span>
-          <span className="today-count">0 / {medications.length}</span>
+          <span className="today-count">
+            {takenCount} / {medications.length}
+          </span>
         </div>
         {medications.length === 0 ? (
           <p className="today-empty">Сегодня ничего нет</p>
         ) : (
           <ul className="today-pills-list">
-            {medications.map((medication) => (
-              <li key={medication.id} className="today-pill-item">
-                <div className="today-pill-info">
-                  <span className="today-pill-time">{medication.time}</span>
-                  <div className="today-pill-text">
-                    <span className="today-pill-name">{medication.name}</span>
-                    <span className="today-pill-dose">{medication.dosage}</span>
+            {medications.map((medication) => {
+              const isTaken = intakes.some(
+                (intake) => intake.medicationId === medication.id,
+              );
+
+              return (
+                <li key={medication.id} className="today-pill-item">
+                  <div className="today-pill-info">
+                    <span className="today-pill-time">{medication.time}</span>
+                    <div className="today-pill-text">
+                      <span className="today-pill-name">{medication.name}</span>
+                      <span className="today-pill-dose">
+                        {medication.dosage}
+                      </span>
+                    </div>
                   </div>
-                </div>
-                <div className="today-pill-actions">
-                  <button className="today-btn-ghost">
-                    <svg
-                      className="today-btn-icon"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                    >
-                      <circle cx="12" cy="12" r="9" strokeLinecap="round" />
-                      <path
-                        d="M12 7v5l3 3"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
-                    Отложить
-                  </button>
-                  <button className="today-btn-small">
-                    <svg
-                      className="today-btn-icon"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2.5"
-                    >
-                      <path
-                        d="M4 12l5 5L20 6"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
-                    Принял
-                  </button>
-                </div>
-              </li>
-            ))}
+                  <div className="today-pill-actions">
+                    <button className="today-btn-ghost">
+                      <svg
+                        className="today-btn-icon"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                      >
+                        <circle cx="12" cy="12" r="9" strokeLinecap="round" />
+                        <path
+                          d="M12 7v5l3 3"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                      </svg>
+                      Отложить
+                    </button>
+                    {isTaken ? (
+                      <span className="today-btn-small">✓ Принято</span>
+                    ) : (
+                      <button
+                        className="today-btn-small"
+                        onClick={() => addIntake(medication.id)}
+                      >
+                        <svg
+                          className="today-btn-icon"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2.5"
+                        >
+                          <path
+                            d="M4 12l5 5L20 6"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                        </svg>
+                        Принял
+                      </button>
+                    )}
+                  </div>
+                </li>
+              );
+            })}
           </ul>
         )}
+
         {isModalOpen && (
           <div className="today-modal-overlay">
             <div className="today-modal">
@@ -170,3 +194,4 @@ export function TodayPage() {
     </div>
   );
 }
+
